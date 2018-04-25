@@ -1,0 +1,71 @@
+<style>.ibox-content {
+        padding:10px 20px 0px 10px;
+    }
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+    border: 0px solid #a9a9a9;
+}
+
+.checkbox label::before,
+.radio label:before{
+   border: 0px solid #cccccc;
+}
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+input.ng-invalid {
+    background-color:#ffffb2;
+}
+.header-top-fix {
+        margin-top:-6px;
+}</style><div ng-class="md.isPanelBody == 'Y'?'panel-body':''" ng-if="md.isDebug === 'Y'"><div class="ibox-title"><h5>Debug Window for [{{md.header}}]</h5></div><div class="ibox-content"><div class="row"><pre>Metadata: {{md | json}}</pre></div><div class="row"><pre>Databinding: {{item | json}}</pre></div></div></div><div ng-class="md.isPanelBody == 'Y'?'panel-body':''"><div class="ibox float-e-margins"><div class="ibox-title" ng-if="md.showHeader == 'Y'"><h5><i class="fa fa-list-alt"></i> {{md.header}}</h5><span class="pull-right header-top-fix m-r-xs" ng-repeat="hitem in md.headerItems"><span ng-if="hitem.isTemplate !=='Y'"><a href="{{hitem.link}}" class="btn btn-success btn-md"><i class="{{hitem.icon}}"></i> {{hitem.label}}</a> </span><span ng-if="hitem.isTemplate =='Y'"><span bind-html-compile="hitem.template"></span> </span></span><span ng-if="md.showButtonsOnTop == 'Y'"><span class="pull-right header-top-fix m-r-xs"><button class="btn btn-md btn-success" ng-click="formContext.save()"><i class="fa fa-save"></i> Save</button> </span><span class="pull-right header-top-fix m-r-xs" ng-hide="md.hideClearButton == 'Y'"><button class="btn btn-md btn-white" ng-click="formContext.clear()"><i class="fa fa-eraser"></i> Clear</button></span></span></div><div ng-class="md.formPanel == 'N'?'':'ibox-content'"><form class="form-horizontal" name="_formComp_{{md.id}}"><span bind-html-compile="formHtml"></span><div class="form-group" ng-hide="md.hideButtons == 'Y' || md.isReadOnly == 'Y' || md.showButtonsOnTop == 'Y'"><div class="col-lg-offset-2 col-lg-10"><button class="btn btn-sm btn-success" ng-click="formContext.save()"><i class="fa fa-save"></i> Save</button> <button class="btn btn-sm btn-white" ng-click="formContext.clear()"><i class="fa fa-eraser"></i> Clear</button></div></div></form></div></div></div>
